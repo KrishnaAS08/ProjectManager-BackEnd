@@ -43,8 +43,9 @@ public class UserRecord {
 
 	}
 	
-	public UserRecord(String firstName, String lastName, Long empId) {
+	public UserRecord(Long userId,String firstName, String lastName, Long empId) {
 		super();
+		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.empId = empId;

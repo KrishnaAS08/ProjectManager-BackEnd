@@ -22,7 +22,7 @@ public class UserRecordTest {
 		assertEquals("lastName", userRecord.getLastName());
 		userRecord.setEmpId(1l);
 		assertEquals(Long.valueOf(1l), userRecord.getEmpId());
-		UserRecord test = new UserRecord("firstName","lastName", 1l);
+		UserRecord test = new UserRecord(1l,"firstName","lastName", 1l);
 		assertEquals("lastName", test.getLastName());
 	}
 
