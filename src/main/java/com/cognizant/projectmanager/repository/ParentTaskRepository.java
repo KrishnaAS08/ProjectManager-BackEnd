@@ -10,6 +10,6 @@ import com.cognizant.projectmanager.entity.ParentTask;
 @Repository
 public interface ParentTaskRepository extends JpaRepository<ParentTask, Long> {
 	
-	@Query("select a.parentName from parentTask a where a.parentId= :parentId")
+	@Query("select parentName from ParentTask  where parentId= :parentId")
 	String getParentNameById(@Param("parentId") Long parentId );
 }

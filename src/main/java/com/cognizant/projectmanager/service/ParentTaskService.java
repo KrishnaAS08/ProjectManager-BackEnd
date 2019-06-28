@@ -21,7 +21,7 @@ public class ParentTaskService {
 private static final Logger logger = Logger.getLogger(ParentTaskService.class.getName());
 	
 	@Autowired
-	ParentTaskRepository repository;
+	ParentTaskRepository parentTaskRepository;
 	
 	public ParentTaskRecord addParentTask (ParentTaskRecord parentTaskRecord) {
 		
@@ -29,7 +29,7 @@ private static final Logger logger = Logger.getLogger(ParentTaskService.class.ge
 			logger.info("adding data into parent task table");
 			ParentTask parentTask = new ParentTask();
 			parentTask.setParentName(parentTaskRecord.getParentName());
-			repository.save(parentTask);
+			parentTaskRepository.save(parentTask);
 			
 			return parentTaskRecord;
 			
@@ -44,7 +44,7 @@ private static final Logger logger = Logger.getLogger(ParentTaskService.class.ge
 		try {
 			logger.info("getting data from the parent task table");
 			List<ParentTask> parentTasks = new ArrayList<ParentTask>();
-			repository.findAll().forEach(parentTasks::add);
+			parentTaskRepository.findAll().forEach(parentTasks::add);
 			List<ParentTaskRecord> parentlist = new ArrayList<ParentTaskRecord>();
 			for(ParentTask p : parentTasks){
 				ParentTaskRecord record = new ParentTaskRecord();
@@ -62,7 +62,7 @@ private static final Logger logger = Logger.getLogger(ParentTaskService.class.ge
 	}
 	
 	public String getparentTaskData(Long parentId) {
-		String parentTaskName = repository.getParentNameById(parentId);
+		String parentTaskName = parentTaskRepository.getParentNameById(parentId);
 			return parentTaskName;
 	}
 

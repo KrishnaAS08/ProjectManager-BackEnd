@@ -20,16 +20,16 @@ public class ParentTaskController {
 	
 	
 	@Autowired
-	ParentTaskService parentService;
+	ParentTaskService parentTaskService;
 	
 	@PostMapping(value = "/addParentTask")
 	public ParentTaskRecord addParentTask (@RequestBody ParentTaskRecord parentTaskRecord) {
-		return parentService.addParentTask(parentTaskRecord);
+		return parentTaskService.addParentTask(parentTaskRecord);
 	}
 	
 	@GetMapping(value = "/getParentTasks")
 	public List<ParentTaskRecord> getParentTasks() {
-		return parentService.getParentTasks();
+		return parentTaskService.getParentTasks();
 	}
 	
 	
