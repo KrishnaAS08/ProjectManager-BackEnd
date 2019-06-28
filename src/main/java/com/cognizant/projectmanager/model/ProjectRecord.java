@@ -100,14 +100,32 @@ public class ProjectRecord {
 	}
 
 	public ProjectRecord(String projectName, Date startDate, Date endDate, int priority, String status,
-			String userName) {
+			Long userId,String userName) {
 		super();
 		this.projectName = projectName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.priority = priority;
 		this.status = status;
+		this.userId = userId;
 		this.userName = userName;
+		this.completedTasks = 0l;
+		this.noOfTasks = 0l;		
+	}
+	
+	public ProjectRecord(Long projectId, String projectName, Date startDate, Date endDate, int priority, String status,
+			Long userId,String userName) {
+		super();
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priority = priority;
+		this.status = status;
+		this.userId = userId;
+		this.userName = userName;
+		this.completedTasks = 0l;
+		this.noOfTasks = 0l;		
 	}
 		
 

@@ -87,5 +87,10 @@ public class UserService {
 			throw e;
 		}
 	}
+	
+	public String getUserData(Long userId) {
+		String userName = userRepository.getUserNameById(userId);
+			return userName;
+	}
 
 }

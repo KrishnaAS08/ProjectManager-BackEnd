@@ -26,8 +26,8 @@ public class TaskRecordTest {
 		assertEquals(new Date(), test.getEndDate());
 		test.setPriority(1);
 		assertEquals(1, test.getPriority());
-		test.setStatus("status");
-		assertEquals("status", test.getStatus());
+		test.setStatus("progress");
+		assertEquals("progress", test.getStatus());
 		test.setParentId(1l);
 		assertEquals(Long.valueOf(1l), test.getParentId());
 		test.setParentName("parentName");
@@ -40,8 +40,10 @@ public class TaskRecordTest {
 		assertEquals(Long.valueOf(1l), test.getUserId());
 		test.setUserName("userName");
 		assertEquals("userName", test.getUserName());
-		TaskRecord taskRecord = new TaskRecord("taskName", new Date(), new Date(), 1, "status", "parentName", "projectName", "userName");
+		TaskRecord taskRecord = new TaskRecord("taskName", new Date(), new Date(), 1, "progress", "parentName", "projectName", "userName");
 		assertEquals("userName", taskRecord.getUserName());
+		TaskRecord task = new TaskRecord("taskName", new Date(), new Date(), 1, "progress", 1l, "parentName", 1l, "projectName", 1l, "userName");
+		assertEquals("userName", task.getUserName());
 	}
 
 }

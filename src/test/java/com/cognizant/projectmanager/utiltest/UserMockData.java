@@ -29,12 +29,16 @@ public class UserMockData {
 		return new User("firstName1", "lastName1", 1l);
 	}
 	
-public List<User> getUserList(){
+	public List<User> getUserList(){
 		
 		List<User> userList = new ArrayList<User>();
 		userList.add(new User("firstName1", "lastName1", 1l));
 		userList.add(new User("firstName2", "lastName2", 2l));
 		return userList;
+	}
+	
+	public String getUserName(){
+	    return "DummyUser";
 	}
 
 }

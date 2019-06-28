@@ -130,6 +130,22 @@ public class TaskRecord {
 		this.projectName = projectName;
 		this.userName = userName;
 	}
+
+	public TaskRecord(String taskName, Date startDate, Date endDate, int priority, String status, Long parentId,
+			String parentName, Long projectId, String projectName, Long userId, String userName) {
+		super();
+		this.taskName = taskName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priority = priority;
+		this.status = status;
+		this.parentId = parentId;
+		this.parentName = parentName;
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.userId = userId;
+		this.userName = userName;
+	}
 	
 	
 
