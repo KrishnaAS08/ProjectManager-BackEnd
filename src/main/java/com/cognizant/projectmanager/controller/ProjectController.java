@@ -38,6 +38,11 @@ public class ProjectController {
 		return projectService.updateProject(projectId, projectRecord);
 	}
 	
+	@PutMapping("/suspendProject/{id}")
+	public String suspendProject(@PathVariable ("id") Long projectId){
+		return projectService.suspendProject(projectId);
+	}
+	
 	@GetMapping(value = "/getAllProjectsRecord")
 	public List<ProjectRecord> getAllProjectsRecord(){
 		return projectService.getAllProjectsRecord();

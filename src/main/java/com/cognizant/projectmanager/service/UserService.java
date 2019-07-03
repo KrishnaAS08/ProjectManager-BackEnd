@@ -41,7 +41,7 @@ public class UserService {
 	
 	public List<UserRecord> getAllUsers(){
 		try {
-			logger.info("getting data from user table");
+			logger.info("getting userName from user table");
 			List<User> users = new ArrayList<User>();
 			userRepository.findAll().forEach(users::add);
 			List<UserRecord> userList = new ArrayList<UserRecord>();
@@ -49,14 +49,17 @@ public class UserService {
 				UserRecord userRecord = new UserRecord();
 				userRecord.setUserId(u.getUserId());
 				userRecord.setFirstName(u.getFirstName());
-				userRecord.setEmpId(u.getEmpId());				
+				userRecord.setLastName(u.getLastName());
+				userRecord.setEmpId(u.getEmpId());
+				String userName = getUserData(u.getUserId());
+				userRecord.setUserName(userName);
 				userList.add(userRecord);
 			}
 			
 			return userList;
 			
 		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occured while getting data from user table",e.getMessage());
+			logger.log(Level.SEVERE, "Exception occured while getting userName from user table",e.getMessage());
 			throw e;
 		}
 	}

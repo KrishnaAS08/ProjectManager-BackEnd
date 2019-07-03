@@ -55,6 +55,15 @@ public class ProjectControllerTest {
 	}
 	
 	@Test
+	public void suspendProjectTest(){
+		Mockito.when(projectService.suspendProject(Mockito.anyLong()))
+				.thenReturn("Suspended");
+		
+		String output = projectController.suspendProject(1l);
+		assertEquals("Suspended", output);
+	}
+	
+	@Test
 	public void getAllProjectsRecordTest(){
 		Mockito.when(projectService.getAllProjectsRecord())
 				.thenReturn(new ProjectMockData().getProjectRecordList());

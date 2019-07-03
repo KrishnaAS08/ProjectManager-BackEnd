@@ -13,6 +13,7 @@ public class UserMockData {
 		UserRecord userRecord = new UserRecord();
 		userRecord.setUserId(1l);
 		userRecord.setFirstName("firstName");
+		userRecord.setLastName("lastName");
 		userRecord.setEmpId(1l);
 		return userRecord;
 	}
@@ -20,8 +21,8 @@ public class UserMockData {
 	public List<UserRecord> getUserRecordList(){
 		
 		List<UserRecord> userList = new ArrayList<UserRecord>();
-		userList.add(new UserRecord(1l, "firstName1", "lastName1", 1l));
-		userList.add(new UserRecord(2l, "firstName2", "lastName2", 2l));
+		userList.add(new UserRecord(1l,"firstName1","lastName1","userName1", 1l));
+		userList.add(new UserRecord(2l,"firstName2","lastName2","userName2", 2l));
 		return userList;
 	}
 	

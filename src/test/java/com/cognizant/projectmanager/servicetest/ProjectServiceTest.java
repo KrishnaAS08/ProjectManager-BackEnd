@@ -10,12 +10,14 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cognizant.projectmanager.entity.Project;
 import com.cognizant.projectmanager.model.ProjectRecord;
 
 import com.cognizant.projectmanager.repository.ProjectRepository;
+import com.cognizant.projectmanager.repository.TaskRepository;
 import com.cognizant.projectmanager.repository.UserRepository;
 import com.cognizant.projectmanager.service.ProjectService;
 import com.cognizant.projectmanager.service.TaskService;
@@ -31,6 +33,9 @@ public class ProjectServiceTest {
 	
 	@Mock
 	public ProjectRepository projectRepository;
+	
+	@Mock
+	public TaskRepository taskRepository;
 	
 	@Mock
 	public UserRepository userRepository;
@@ -97,6 +102,22 @@ public class ProjectServiceTest {
 		ProjectRecord output = projectService.updateProject(1l,new ProjectMockData().getProjectRecord());
 		assertEquals(new ProjectMockData().getProjectRecord().getPriority(), output.getPriority());
 		assertEquals(new ProjectMockData().getProjectRecord().getStatus(), output.getStatus());
+	}
+	
+	@Test
+	public void suspendProjectTest(){
+		projectRepository.suspendById(Mockito.anyLong());
+		taskRepository.suspendtaskById(Mockito.anyLong());
+		String output = projectService.suspendProject(1l);
+		Assert.assertEquals("Suspended", output);
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void suspendProjectNavigativeScenario(){
+		Mockito.doThrow(EmptyResultDataAccessException.class).when(projectRepository).suspendById(Mockito.anyLong());
+		
+		String output = projectService.suspendProject(1l);
+		Assert.assertEquals("Suspended", output);
 	}
 	
 	@Test

@@ -135,7 +135,7 @@ public class TaskServiceTest {
 	
 	@Test(expected = RuntimeException.class)
 	public void endTaskTestNavigativeScenario() {
-		Mockito.doThrow(EmptyResultDataAccessException.class).when(taskRepository).suspendById(Mockito.anyLong());
+		Mockito.doThrow(EmptyResultDataAccessException.class).when(taskRepository).completeById(Mockito.anyLong());
 
 		String output = taskService.endTask(1l);
 

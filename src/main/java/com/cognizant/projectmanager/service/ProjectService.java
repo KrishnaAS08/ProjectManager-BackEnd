@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cognizant.projectmanager.entity.Project;
 import com.cognizant.projectmanager.model.ProjectRecord;
 import com.cognizant.projectmanager.repository.ProjectRepository;
+import com.cognizant.projectmanager.repository.TaskRepository;
 import com.cognizant.projectmanager.repository.UserRepository;
 
 @Service
@@ -22,6 +23,9 @@ public class ProjectService {
 	
 	@Autowired
 	ProjectRepository projectRepository;
+	
+	@Autowired
+	TaskRepository taskRepository;
 	
 	@Autowired
 	UserRepository userRepository;
@@ -95,6 +99,18 @@ public class ProjectService {
 			
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occured while updating data in project table",e.getMessage());
+			throw e;
+		}
+	}
+	
+	public String suspendProject(Long projectId) {
+		try {
+			logger.info("Suspend project from project table of id: "+ projectId);
+			projectRepository.suspendById(projectId);
+			taskRepository.suspendtaskById(projectId);
+			return "Suspended";
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while suspending project from project table", e.getMessage());
 			throw e;
 		}
 	}

@@ -138,7 +138,7 @@ public class TaskService {
 	public String endTask(Long taskId){
 		try {
 			logger.info("end the task in task table");
-			taskRepository.suspendById(taskId);
+			taskRepository.completeById(taskId);
 			return "Completed";
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while end the task in task table", e.getMessage());
