@@ -4,8 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,7 +21,8 @@ public class ParentTask {
 	
 	@Id
 	@Column(name = "parent_Id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(generator="parent_task_seq")
+	@SequenceGenerator(name="parent_task_seq",sequenceName="PARENT_TASK_SEQ", allocationSize=1)
 	private Long parentId;
 	
 	@Column(name = "parent_Name")

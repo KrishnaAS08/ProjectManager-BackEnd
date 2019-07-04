@@ -135,6 +135,36 @@ public class TaskService {
 		}
 	}
 	
+	public TaskRecord getTaskById(Long taskId) {
+		try {
+			logger.info("getting data by taskId from task table");
+			Task t = taskRepository.getTask(taskId);
+			
+			TaskRecord taskRecord = new TaskRecord();
+			taskRecord.setTaskId(t.getTaskId());
+			taskRecord.setTaskName(t.getTaskName());
+			taskRecord.setStartDate(t.getStartDate());
+			taskRecord.setEndDate(t.getEndDate());
+			taskRecord.setPriority(t.getPriority());
+			taskRecord.setStatus(t.getStatus());
+			taskRecord.setParentId(t.getParentId());
+			String parentName = parentTaskService.getparentTaskData(t.getParentId());
+			taskRecord.setParentName(parentName);
+			taskRecord.setUserId(t.getUserId());
+			String userName = userService.getUserData(t.getUserId());
+			taskRecord.setUserName(userName);
+			taskRecord.setProjectId(t.getProjectId());
+			String projectName = projectService.getProjectData(t.getProjectId());
+			taskRecord.setProjectName(projectName);
+			
+			return taskRecord;
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while getting data by taskId from task table", e.getMessage());
+			throw e;
+		}
+		
+	}
+	
 	public String endTask(Long taskId){
 		try {
 			logger.info("end the task in task table");

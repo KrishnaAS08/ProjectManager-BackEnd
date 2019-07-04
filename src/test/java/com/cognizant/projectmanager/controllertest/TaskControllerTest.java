@@ -72,4 +72,14 @@ public class TaskControllerTest {
 		assertEquals(2, output.size());
 	}
 	
+	@Test
+	public void getTaskByIdTest(){
+		Mockito.when(taskService.getTaskById(Mockito.anyLong()))
+		.thenReturn(new TaskMockData().getTaskRecord());
+		
+		TaskRecord output = taskController.getTaskById(1l);
+		assertEquals(new TaskMockData().getTaskRecord().getUserName(), output.getUserName());
+		assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
+	}
+	
 }

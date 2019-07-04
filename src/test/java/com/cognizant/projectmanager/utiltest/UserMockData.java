@@ -39,7 +39,7 @@ public class UserMockData {
 	}
 	
 	public String getUserName(){
-	    return "DummyUser";
+	    return "userName";
 	}
 
 }

@@ -129,6 +129,34 @@ public class TaskServiceTest {
 	}
 	
 	@Test
+	public void getTaskByIdTest(){
+		Mockito.when(taskRepository.getTask(Mockito.anyLong()))
+				.thenReturn(new TaskMockData().getTask());
+		Mockito.when(parentTaskService.getparentTaskData(Mockito.anyLong()))
+				.thenReturn(new ParentTaskMockData().getParentTaskName());
+
+		Mockito.when(userService.getUserData(Mockito.anyLong())).thenReturn(new UserMockData().getUserName());
+
+		Mockito.when(projectService.getProjectData(Mockito.anyLong()))
+				.thenReturn(new ProjectMockData().getProjectName());
+		
+		TaskRecord output = taskService.getTaskById(1l);
+		assertEquals(new TaskMockData().getTaskRecord().getUserName(), output.getUserName());
+		assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void getTaskByIdNavigativeScenario(){
+		Mockito.when(taskRepository.getTask(Mockito.anyLong()))
+				.thenThrow(new RuntimeException());
+		
+		TaskRecord output = taskService.getTaskById(1l);
+		assertEquals(new TaskMockData().getTaskRecord().getUserName(), output.getUserName());
+		assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
+	}
+	
+	
+	@Test
 	public void endTaskTest(){
 		assertEquals("Completed", taskService.endTask(1l));
 	}

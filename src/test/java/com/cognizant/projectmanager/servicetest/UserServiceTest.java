@@ -99,7 +99,7 @@ public class UserServiceTest {
     	Mockito.when(userRepository.getUserNameById(Mockito.anyLong()))
 		.thenReturn(new UserMockData().getUserName());
     	String output = userService.getUserData(1l);
-    	Assert.assertEquals("DummyUser", output);
+    	Assert.assertEquals("userName", output);
     }
 
 }
