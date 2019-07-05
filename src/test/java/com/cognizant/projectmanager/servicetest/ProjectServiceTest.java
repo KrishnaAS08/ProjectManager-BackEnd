@@ -68,7 +68,7 @@ public class ProjectServiceTest {
 	
 	@Test
 	public void getAllProjectsTest(){
-		Mockito.when(projectRepository.findAll())
+		Mockito.when(projectRepository.findAllProjects())
 				.thenReturn(new ProjectMockData().getProjectList());
 		
 		List<ProjectRecord> output = projectService.getAllProjects();
@@ -77,7 +77,7 @@ public class ProjectServiceTest {
 	
 	@Test(expected = RuntimeException.class)
 	public void getAllProjectsNavigativeScenario(){
-		Mockito.when(projectRepository.findAll())
+		Mockito.when(projectRepository.findAllProjects())
 				.thenThrow(new RuntimeException());
 		
 		List<ProjectRecord> output = projectService.getAllProjects();

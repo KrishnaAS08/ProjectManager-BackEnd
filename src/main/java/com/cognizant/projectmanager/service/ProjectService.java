@@ -60,7 +60,7 @@ public class ProjectService {
 		try {
 			logger.info("getting data from project table");
 			List<Project> projects = new ArrayList<Project>();
-			projectRepository.findAll().forEach(projects::add);
+			projectRepository.findAllProjects().forEach(projects::add);
 			List<ProjectRecord> projectList = new ArrayList<ProjectRecord>();
 			for(Project p : projects){
 				ProjectRecord projectRecord = new ProjectRecord();
@@ -128,6 +128,7 @@ public class ProjectService {
 				projectRecord.setProjectName(p.getProjectName());
 				projectRecord.setStartDate(p.getStartDate());
 				projectRecord.setUserId(p.getUserId());
+				projectRecord.setStatus(p.getStatus());
 				String userName = userService.getUserData(p.getUserId());
 				projectRecord.setUserName(userName);
 				Long noOfTask = taskService.getNoOfTasks(p.getProjectId());
